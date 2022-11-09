@@ -28,14 +28,14 @@ namespace ConsoleApp1
 
 
         }
-        internal class LightCar : Transport
+        internal class Car : Transport
         {
             string model;
             string carage;
-            public async Task PrintLC()
+            public async Task PrintCar()
             {
                 PrintC();
-                string path = @"C:\Users\vsoko\source\repos\ConsoleApp1\ConsoleApp1\LightCars.txt";
+                string path = "LightCars.txt";
                 Console.WriteLine("Введите модель: ");
                 model = Console.ReadLine();
                 Console.WriteLine("Введите год производства ");
@@ -43,10 +43,10 @@ namespace ConsoleApp1
                 Console.WriteLine($"Марка: {mark}; Модель: {model}; Цвет: {color}; Год производства: {carage}");
                 using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
                 {
-                    byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " " );
-                    byte[] buffermodel = Encoding.Default.GetBytes(model + " " );
-                    byte[] buffercolor = Encoding.Default.GetBytes(color + " " );
-                    byte[] buffercarage = Encoding.Default.GetBytes(carage + " " );
+                    byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
+                    byte[] buffermodel = Encoding.Default.GetBytes(model + " ");
+                    byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
+                    byte[] buffercarage = Encoding.Default.GetBytes(carage + " ");
                     await fstream.WriteAsync(buffermark, 0, buffermark.Length);
                     await fstream.WriteAsync(buffermodel, 0, buffermodel.Length);
                     await fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
@@ -67,7 +67,7 @@ namespace ConsoleApp1
             public async Task PrintTruck()
             {
                 PrintC();
-                string path = @"C:\Users\vsoko\source\repos\ConsoleApp1\ConsoleApp1\Trucks.txt";
+                string path = "";
                 Console.WriteLine("Введите вес грузовика: ");
                 weight = Console.ReadLine();
                 Console.WriteLine($"Марка: {mark}; Цвет: {color}; Вес: {weight}");
@@ -82,7 +82,7 @@ namespace ConsoleApp1
                     fstream.Close();
 
                 }
-                
+
             }
         }
         internal class Bike : Transport
@@ -90,7 +90,7 @@ namespace ConsoleApp1
             string power;
             public async Task PrintBike()
             {
-                string path = @"C:\Users\vsoko\source\repos\ConsoleApp1\ConsoleApp1\Bikes.txt";
+                string path = "Bikes.txt";
                 PrintC();
                 Console.WriteLine("Введите мощность двигателя (л/с): ");
                 power = Console.ReadLine();
@@ -106,9 +106,9 @@ namespace ConsoleApp1
                     fstream.Close();
 
                 }
-               
+
             }
         }
-        }
     }
+}
 
