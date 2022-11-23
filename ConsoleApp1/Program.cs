@@ -1,13 +1,17 @@
 ﻿using ConsoleApp1;
 using System.Text;
-using static ConsoleApp1.Transport;
+
+
 
 Console.WriteLine("Выберите нужный пункт меню: \n 1-Внести легковое авто\n 2-Внести грузовое авто\n 3-Внести мотоцикл\n 4-Вывести список легковых авто\n 5-Вывести список грузовых авто\n 6-Вывести список мотоциклов\n 7-Выход\n");
 string point = Console.ReadLine();
 
-Car car1 = new Car();
-Truck car2 = new Truck();
-Bike car3 = new Bike();
+CarAdd transport = new CarPark();
+CarWrite car1 = transport.add();
+CarAdd transport2 = new TruckPark();
+CarWrite car2 = transport2.add();
+CarAdd transport3 = new BikePark();
+CarWrite car3 = transport3.add();
 Person per1 = new Person();
 Person per2 = new Person();
 Person per3 = new Person();
@@ -18,11 +22,11 @@ Parking park3 = new Parking();
 switch (point)
 {
     case "1":
-        car1.PrintCar(); per1.PrintP1(); park1.PrintPark1(); return;
+        car1.write(); per1.PrintP1(); park1.PrintPark1(); return;
     case "2":
-        car2.PrintTruck(); per2.PrintP2(); park2.PrintPark2(); return;
+        car2.write(); per2.PrintP1(); park2.PrintPark1(); return;
     case "3":
-        car3.PrintBike(); per3.PrintP3(); park3.PrintPark3(); return;
+        car3.write(); per3.PrintP1(); park3.PrintPark1(); return;
     case "4":
         ShowCar(); return;
     case "5":

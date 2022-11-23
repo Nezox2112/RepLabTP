@@ -3,112 +3,129 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using static ConsoleApp1.Transport;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ConsoleApp1
 {
-    internal class Transport
+    interface CarWrite
     {
-
+        void write();
+        
+    }
+    interface CarAdd
+    {
+        CarWrite add();
+    }
+    class Car : CarWrite
+    {
         public string mark;
         public string color;
-        public void PrintC()
+        public string number;
+        public void Writing()
         {
-
+            string path = "LightCars.txt";
             Console.WriteLine("Введите марку транспорта: ");
             mark = Console.ReadLine();
             Console.WriteLine("Введите цвет: ");
             color = Console.ReadLine();
-
-
-        }
-        internal class Car : Transport
-        {
-            string model;
-            string carage;
-            public async Task PrintCar()
+            Console.WriteLine("Введите номерной знак: ");
+            number = Console.ReadLine();
+            using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
             {
-                PrintC();
-                string path = "LightCars.txt";
-                Console.WriteLine("Введите модель: ");
-                model = Console.ReadLine();
-                Console.WriteLine("Введите год производства ");
-                carage = Console.ReadLine();
-                Console.WriteLine($"Марка: {mark}; Модель: {model}; Цвет: {color}; Год производства: {carage}");
-                using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
-                {
-                    byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
-                    byte[] buffermodel = Encoding.Default.GetBytes(model + " ");
-                    byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
-                    byte[] buffercarage = Encoding.Default.GetBytes(carage + " ");
-                    await fstream.WriteAsync(buffermark, 0, buffermark.Length);
-                    await fstream.WriteAsync(buffermodel, 0, buffermodel.Length);
-                    await fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
-                    await fstream.WriteAsync(buffercarage, 0, buffercarage.Length);
-                    fstream.Close();
-
-                }
-
-
-
+                byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");     
+                byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
+                byte[] buffernumber = Encoding.Default.GetBytes(number + " ");
+                fstream.WriteAsync(buffermark, 0, buffermark.Length);
+                fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
+                fstream.WriteAsync(buffernumber, 0, buffernumber.Length);
+                fstream.Close();
 
             }
+            Console.WriteLine("Машина добавлена в базу");
+
         }
-
-        internal class Truck : Transport
-        {
-            string weight;
-            public async Task PrintTruck()
-            {
-                PrintC();
-                string path = "";
-                Console.WriteLine("Введите вес грузовика: ");
-                weight = Console.ReadLine();
-                Console.WriteLine($"Марка: {mark}; Цвет: {color}; Вес: {weight}");
-                using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
-                {
-                    byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
-                    byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
-                    byte[] bufferweight = Encoding.Default.GetBytes(weight + " ");
-                    await fstream.WriteAsync(buffermark, 0, buffermark.Length);
-                    await fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
-                    await fstream.WriteAsync(bufferweight, 0, bufferweight.Length);
-                    fstream.Close();
-
-                }
-
-            }
-        }
-        internal class Bike : Transport
-        {
-            string power;
-            public async Task PrintBike()
-            {
-                string path = "Bikes.txt";
-                PrintC();
-                Console.WriteLine("Введите мощность двигателя (л/с): ");
-                power = Console.ReadLine();
-                Console.WriteLine($"Марка: {mark}; Цвет: {color}; Мощность: {power}л/с");
-                using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
-                {
-                    byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
-                    byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
-                    byte[] bufferpower = Encoding.Default.GetBytes(power + " ");
-                    await fstream.WriteAsync(buffermark, 0, buffermark.Length);
-                    await fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
-                    await fstream.WriteAsync(bufferpower, 0, bufferpower.Length);
-                    fstream.Close();
-
-                }
-
-            }
-        }
+        public void write() => Writing();
     }
+    class Truck : CarWrite
+    {
+        public string mark;
+        public string color;
+        public string number;
+        public void Writing()
+        {
+            string path = "Trucks.txt";
+            Console.WriteLine("Введите марку транспорта: ");
+            mark = Console.ReadLine();
+            Console.WriteLine("Введите цвет: ");
+            color = Console.ReadLine();
+            Console.WriteLine("Введите номерной знак: ");
+            number = Console.ReadLine();
+            using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
+            {
+                byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
+                byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
+                byte[] buffernumber = Encoding.Default.GetBytes(number + " ");
+                fstream.WriteAsync(buffermark, 0, buffermark.Length);
+                fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
+                fstream.WriteAsync(buffernumber, 0, buffernumber.Length);
+                fstream.Close();
+
+            }
+            Console.WriteLine("Грузовик добавлен в базу");
+
+        }
+        public void write() => Writing();
+    }
+
+    class Bike : CarWrite
+    {
+        public string mark;
+        public string color;
+        public string number;
+        public void Writing()
+        {
+            string path = "Bikes.txt";
+            Console.WriteLine("Введите марку транспорта: ");
+            mark = Console.ReadLine();
+            Console.WriteLine("Введите цвет: ");
+            color = Console.ReadLine();
+            Console.WriteLine("Введите номерной знак: ");
+            number = Console.ReadLine();
+            using (FileStream fstream = new FileStream(path, FileMode.Append, FileAccess.Write))
+            {
+                byte[] buffermark = Encoding.Default.GetBytes(Environment.NewLine + mark + " ");
+                byte[] buffercolor = Encoding.Default.GetBytes(color + " ");
+                byte[] buffernumber = Encoding.Default.GetBytes(number + " ");
+                fstream.WriteAsync(buffermark, 0, buffermark.Length);
+                fstream.WriteAsync(buffercolor, 0, buffercolor.Length);
+                fstream.WriteAsync(buffernumber, 0, buffernumber.Length);
+                fstream.Close();
+
+            }
+            Console.WriteLine("Мотоцикл добавлена в базу");
+
+        }
+        public void write() => Writing();
+    }
+    
+    class CarPark : CarAdd
+    {
+        public CarWrite add() => new Car();
+    }
+    class TruckPark : CarAdd
+    {
+        public CarWrite add() => new Truck();
+    }
+    class BikePark : CarAdd
+    {
+        public CarWrite add() => new Bike();
+    }
+
 }
 

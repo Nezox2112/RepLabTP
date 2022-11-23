@@ -1,36 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ConsoleApp1.Parking">
-    <Position X="3.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAlAAAAAGABAAAAAAAAAAAAAAQACAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Parking.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ConsoleApp1.Person">
-    <Position X="5.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAQIADAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
-      <FileName>Person.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ConsoleApp1.Transport">
-    <Position X="1" Y="0.5" Width="1.5" />
+    <Position X="10.25" Y="1.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="ConsoleApp1.Transport.LightCar">
+      <Class Name="ConsoleApp1.Transport.Car" Collapsed="true">
+        <InheritanceLine Type="ConsoleApp1.Transport" FixedFromPoint="true">
+          <Path>
+            <Point X="10.25" Y="4.688" />
+            <Point X="10.373" Y="4.688" />
+            <Point X="10.373" Y="4.603" />
+            <Point X="10.46" Y="4.603" />
+          </Path>
+        </InheritanceLine>
         <TypeIdentifier>
           <NewMemberFileName>Car.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="ConsoleApp1.Transport.Truck">
+      <Class Name="ConsoleApp1.Transport.Truck" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Car.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="ConsoleApp1.Transport.Bike">
+      <Class Name="ConsoleApp1.Transport.Bike" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Car.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -41,9 +35,19 @@
       <FileName>Car.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="System.Object">
-    <Position X="3.5" Y="5" Width="1.5" />
-    <TypeIdentifier />
+  <Class Name="ConsoleApp1.Parking">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAlAAAAAGABBAAAAAAAAAAAAAQACAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Parking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleApp1.Person">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAABAAAQIADAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Person.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
